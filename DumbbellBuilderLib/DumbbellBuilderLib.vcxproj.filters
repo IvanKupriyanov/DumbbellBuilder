@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="include">
+      <UniqueIdentifier>{f798a455-1c99-4097-a58d-9e2f64784f86}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\computation">
+      <UniqueIdentifier>{0eaeb023-154b-4a81-bbf8-86e4770a2984}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\model">
+      <UniqueIdentifier>{ab7f4c8a-1b4a-4318-b3d5-d8be3661cf4e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\units">
+      <UniqueIdentifier>{b82bb38f-8655-45ee-931d-ceb3fcb38a07}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\Calculator.h">
+      <Filter>include\computation</Filter>
+    </ClInclude>
+    <ClInclude Include="include\CombinationsGenerator.h">
+      <Filter>include\computation</Filter>
+    </ClInclude>
+    <ClInclude Include="include\DumbbellConfigEvaluator.h">
+      <Filter>include\computation</Filter>
+    </ClInclude>
+    <ClInclude Include="include\PermutationsGenerator.h">
+      <Filter>include\computation</Filter>
+    </ClInclude>
+    <ClInclude Include="include\PlatesSplitStrategy.h">
+      <Filter>include\computation</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Dumbbell.h">
+      <Filter>include\model</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Plate.h">
+      <Filter>include\model</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Measure.h">
+      <Filter>include\units</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Unit.h">
+      <Filter>include\units</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\Dumbbell.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Metric.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
