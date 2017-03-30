@@ -89,6 +89,7 @@ protected:
         if (!ArePlatesSorted(Config.RightSide()))
             return false;
 
+        SetBestConfig(Config);
         return true;
     }
 };

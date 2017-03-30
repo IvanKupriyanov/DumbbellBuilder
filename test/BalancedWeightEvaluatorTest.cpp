@@ -21,6 +21,14 @@ namespace Microsoft {
 
                 return ss.str();
             }
+
+            template <> std::wstring ToString(const CDumbbellConfig& q)
+            {
+                std::wstringstream ss;
+                ss << L"Cfg";
+
+                return ss.str();
+            }
         }
     }
 }
@@ -101,14 +109,14 @@ namespace test
             {
                 CPlates left{ { plate1_25, plate0_5 } }; // not sorted
                 CPlates right{ { plate0_5, plate1_25 } }; // sorted
-                CDumbbellConfig notSortedConfig = CDumbbellConfig{ left, right };
+                CDumbbellConfig notSortedConfig { left, right };
                 Assert::IsTrue(m_Evaluator.Rank(m_Handle, notSortedConfig));
             }
 
             {
                 CPlates left{ { plate0_5, plate1_25 } }; // sorted
                 CPlates right{ { plate0_5, plate1_25 } }; // sorted
-                CDumbbellConfig sortedConfig = CDumbbellConfig{ left, right };
+                CDumbbellConfig sortedConfig { left, right };
                 Assert::IsTrue(m_Evaluator.Rank(m_Handle, sortedConfig));
             }
         }
@@ -125,17 +133,21 @@ namespace test
                 CPlates right{ { plate5_0 } };
                 Assert::AreEqual(TWeight{ 15.0_kg }, left.GetWeight() + right.GetWeight());
 
-                CDumbbellConfig notBalanced = CDumbbellConfig{ left, right };
+                CDumbbellConfig notBalanced { left, right };
                 Assert::IsTrue(m_Evaluator.Rank(m_Handle, notBalanced));
+                Assert::AreEqual(notBalanced, m_Evaluator.GetBest());
             }
 
+            CDumbbellConfig bestConfig;
             {
                 CPlates left{ { plate2_5, plate5_0 } };
                 CPlates right{ { plate2_5, plate5_0 } };
                 Assert::AreEqual(TWeight{ 15.0_kg }, left.GetWeight() + right.GetWeight());
 
-                CDumbbellConfig sortedConfig = CDumbbellConfig{ left, right };
+                CDumbbellConfig sortedConfig { left, right };
+                bestConfig = sortedConfig;
                 Assert::IsTrue(m_Evaluator.Rank(m_Handle, sortedConfig));
+                Assert::AreEqual(sortedConfig, m_Evaluator.GetBest());
             }
 
             {
@@ -143,10 +155,61 @@ namespace test
                 CPlates right{ { plate2_5 } };
                 Assert::AreEqual(TWeight{ 15.0_kg }, left.GetWeight() + right.GetWeight());
 
-                CDumbbellConfig sortedConfig = CDumbbellConfig{ left, right };
-                Assert::IsFalse(m_Evaluator.Rank(m_Handle, sortedConfig));
+                CDumbbellConfig unbalanced { left, right };
+                Assert::IsFalse(m_Evaluator.Rank(m_Handle, unbalanced));
+                Assert::AreEqual(bestConfig, m_Evaluator.GetBest());
             }
         }
+
+
+        // 17 kg.
+        // 
+        TEST_METHOD(ComplexCase)
+        {
+            Init();
+
+            {
+                CPlates left{ { plate0_5, plate1_25, plate2_5 } };
+                CPlates right{ {  } };
+                CDumbbellConfig config = CDumbbellConfig{ left, right };
+
+                Assert::IsTrue(m_Evaluator.Rank(m_Handle, config));
+            }
+
+            {
+                CPlates left{ { plate0_5, plate2_5 } };
+                CPlates right{ { plate1_25 } };
+                CDumbbellConfig config = CDumbbellConfig{ left, right };
+
+                Assert::IsTrue(m_Evaluator.Rank(m_Handle, config));
+            }
+
+            {
+                CPlates left{ { plate1_25, plate0_5, plate2_5 } };
+                CPlates right{ { } };
+                CDumbbellConfig config = CDumbbellConfig{ left, right };
+
+                Assert::IsFalse(m_Evaluator.Rank(m_Handle, config));
+            }
+
+            {
+                CPlates left{ { plate1_25, plate2_5 } };
+                CPlates right{ { plate0_5 } };
+                CDumbbellConfig config = CDumbbellConfig{ left, right };
+
+                Assert::IsFalse(m_Evaluator.Rank(m_Handle, config));
+            }
+
+            {
+                CPlates left{ { plate2_5 } };
+                CPlates right{ { plate0_5, plate1_25 } };
+                CDumbbellConfig config = CDumbbellConfig{ left, right };
+
+                Assert::IsTrue(m_Evaluator.Rank(m_Handle, config));
+            }
+
+        }
+
 
 
 

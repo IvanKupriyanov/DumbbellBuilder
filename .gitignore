@@ -5,3 +5,7 @@
 /DumbbellBuilder/.vs/DumbbellBuilder/v15
 /.vs/DumbbellBuilder/v15
 /DumbbellBuilder/*.suo
+/DumbbellBuilder/Release
+/DumbbellBuilderLib/Release
+/Release
+/test/Release

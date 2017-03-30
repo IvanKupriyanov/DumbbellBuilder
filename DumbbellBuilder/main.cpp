@@ -21,10 +21,10 @@ int main()
     plates.Add(plate25);
     
     plates.Add(plate5);
-    plates.Add(plate5);
-    plates.Add(plate5);
+    //plates.Add(plate5);
+    //plates.Add(plate5);
 
-    plates.Add(plate10);
+    //plates.Add(plate10);
 
     CDumbbellHandle handle{ measure::CWeight{2.0_kg}, measure::CWidth{10.0_cm} };
 

@@ -8,6 +8,7 @@ public:
     CCombinationsGenerator(const std::vector<T>& ItemsSet)
     {
         m_ItemsSet = ItemsSet;
+        Increment(0);
     }
 
     bool Next()

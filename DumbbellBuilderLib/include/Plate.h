@@ -31,7 +31,13 @@ struct CPlate
         return m_Weight < Rhs.m_Weight;
     }
 
+    bool operator == (const CPlate& Other) const
+    {
+        if (m_Weight != Other.m_Weight)
+            return false;
 
+        return true;
+    }
 private:
     measure::CWeight m_Weight;
     measure::CWidth  m_Width;
