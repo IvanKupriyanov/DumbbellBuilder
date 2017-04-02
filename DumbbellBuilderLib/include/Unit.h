@@ -155,5 +155,11 @@ T operator+ (const CUnit<T>& Lhs, const CUnit<T>& Rhs)
     return T(Lhs.Value() + Rhs.Value());
 }
 
+template <typename T>
+T operator* (const CUnit<T>& Lhs, const float& Rhs)
+{
+    return T(Lhs.Value() * Rhs);
+}
+
 
 } // namespace metric

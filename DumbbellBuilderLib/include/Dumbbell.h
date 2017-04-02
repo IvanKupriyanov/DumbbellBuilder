@@ -13,11 +13,10 @@ public:
     CDumbbellConfig()
     {}
 
-    CDumbbellConfig(CPlates LeftSide, CPlates RightSide)
+    CDumbbellConfig(const CPlates& LeftSide, const CPlates& RightSide)
         : m_LeftSide{ LeftSide }, 
           m_RightSide{ RightSide }
 	{
-        assert(LeftSide.size()  > 0 || RightSide.size() > 0);
     }
 
     const CPlates& LeftSide() const

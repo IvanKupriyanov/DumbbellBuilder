@@ -64,7 +64,26 @@ namespace test
 
             GetCalculator().Calculate(m_Handle, plates);
 
-            Assert::AreEqual<size_t>(6, GetCalculator().Result().size());
+            Assert::AreEqual<size_t>(7, GetCalculator().Result().size());
+        }
+
+
+        TEST_METHOD(SameWeigthWithDifferentPlates_ShouldSelectOptimalSolution)
+        {
+            Init();
+
+            CPlates plates;
+            plates.Add(plate0_5);
+            plates.Add(plate2_5);
+            plates.Add(plate2_5);
+            plates.Add(plate5_0);
+
+            GetCalculator().Calculate(m_Handle, plates);
+
+            Assert::AreEqual<size_t>(9, GetCalculator().Result().size());
+
+            CDumbbellConfig expected{ CPlates{{plate2_5}}, CPlates{{plate0_5, plate2_5}} };
+            //Assert::AreEqual(expected, GetCalculator().Result().[measure::CWeight(7.5_kg)]);
         }
 
 

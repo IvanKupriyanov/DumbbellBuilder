@@ -141,7 +141,9 @@
     <ClInclude Include="include\PlatesSplitStrategy.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Calculator.cpp" />
     <ClCompile Include="src\Dumbbell.cpp" />
+    <ClCompile Include="src\DumbbellConfigEvaluator.cpp" />
     <ClCompile Include="src\Metric.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -160,6 +160,11 @@
     </ClCompile>
     <ClCompile Include="EqualWeightStrategyTest.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DumbbellBuilderLib\DumbbellBuilderLib.vcxproj">
+      <Project>{a930561d-ad06-4883-bfe6-dc7230776a39}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

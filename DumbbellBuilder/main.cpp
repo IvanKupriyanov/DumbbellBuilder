@@ -2,6 +2,8 @@
 #include "Measure.h"
 #include "Unit.h"
 
+#include <iostream>
+
 int main()
 {
     using namespace unit::literals;
@@ -21,10 +23,26 @@ int main()
     plates.Add(plate25);
     
     plates.Add(plate5);
-    //plates.Add(plate5);
-    //plates.Add(plate5);
+    plates.Add(plate5);
+    plates.Add(plate5);
 
-    //plates.Add(plate10);
+    plates.Add(plate10);
+
+    // Duplicate weights
+    plates.Add(plate05);
+
+    plates.Add(plate125);
+
+    plates.Add(plate25);
+    plates.Add(plate25);
+
+    plates.Add(plate5);
+    plates.Add(plate5);
+    plates.Add(plate5);
+
+    plates.Add(plate10);
+
+
 
     CDumbbellHandle handle{ measure::CWeight{2.0_kg}, measure::CWidth{10.0_cm} };
 
@@ -34,16 +52,18 @@ int main()
     Calculator calc{ splitter, configEvaluator };
     calc.Calculate(handle, plates);
 
+    std::cout.imbue(std::locale(""));
     for (const auto& cfg : calc.Result())
     {
-        std::cout << cfg.first.Kg().Value() << ": ";
+        std::cout << cfg.first.Kg().Value() << ";";
         for (const auto& plate : cfg.second.LeftSide().GetPlates())
-            std::cout << plate.GetWeight().Kg().Value() << " ";
+            std::cout << "=\"" << plate.GetWeight().Kg().Value() << "\";";
 
-        std::cout << " |===| ";
+        std::cout << "|===|;";
 
-        for (const auto& plate : cfg.second.RightSide().GetPlates())
-            std::cout << plate.GetWeight().Kg().Value() << " ";
+        const auto rightPlates = cfg.second.RightSide().GetPlates();
+        for (auto it = rightPlates.rbegin(), end = rightPlates.rend(); it != end; ++it)
+            std::cout << "=\"" << it->GetWeight().Kg().Value() << "\";";
 
         std::cout << "\n";
     }

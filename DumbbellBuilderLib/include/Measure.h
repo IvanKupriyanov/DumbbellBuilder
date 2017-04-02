@@ -95,6 +95,15 @@ T operator+ (const CMeasure<T, TUnit>& Lhs, const CMeasure<T, TUnit>& Rhs)
 }
 
 
+template <typename T, typename TUnit>
+T operator* (const CMeasure<T, TUnit>& Lhs, const float& Rhs)
+{
+    const TUnit& lhs{ Lhs.Unit() };
+    TUnit res = lhs * Rhs;
+    return T(res);
+}
+
+
 template <typename T>
 struct CLength : public CMeasure<T, unit::CMillimeter>
 {

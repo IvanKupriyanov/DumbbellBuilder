@@ -17,6 +17,12 @@
     <Filter Include="include\units">
       <UniqueIdentifier>{b82bb38f-8655-45ee-931d-ceb3fcb38a07}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\computation">
+      <UniqueIdentifier>{513e469b-48ad-4c9c-bcc8-0c054cd5f17b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\units">
+      <UniqueIdentifier>{7c23f090-76af-430f-a11b-ba8baae8542d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Calculator.h">
@@ -49,10 +55,16 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Dumbbell.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>include\model</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DumbbellConfigEvaluator.cpp">
+      <Filter>Source Files\computation</Filter>
     </ClCompile>
     <ClCompile Include="src\Metric.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\units</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Calculator.cpp">
+      <Filter>Source Files\computation</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
