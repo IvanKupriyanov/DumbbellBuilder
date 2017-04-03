@@ -139,6 +139,7 @@
     <ClInclude Include="include\PermutationsGenerator.h" />
     <ClInclude Include="include\Plate.h" />
     <ClInclude Include="include\PlatesSplitStrategy.h" />
+    <ClInclude Include="src\picojson.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Calculator.cpp" />

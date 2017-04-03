@@ -52,6 +52,9 @@
     <ClInclude Include="include\Unit.h">
       <Filter>include\units</Filter>
     </ClInclude>
+    <ClInclude Include="src\picojson.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Dumbbell.cpp">
