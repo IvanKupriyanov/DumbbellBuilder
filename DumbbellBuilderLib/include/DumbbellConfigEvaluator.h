@@ -8,6 +8,7 @@ struct IDumbbellConfigEvaluator
 
     bool Rank(const CDumbbellHandle& Dumbbellhandle, const CDumbbellConfig& Config);
     void Reset();
+    void Reset(const CDumbbellConfig& Best);
     const CDumbbellConfig& GetBest();
 
 protected:

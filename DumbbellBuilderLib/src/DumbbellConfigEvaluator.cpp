@@ -27,6 +27,13 @@ void IDumbbellConfigEvaluator::Reset()
     m_IsEmpty = true;
 }
 
+
+void IDumbbellConfigEvaluator::Reset(const CDumbbellConfig& Best)
+{
+    m_Config = Best;
+    m_IsEmpty = false;
+}
+
 const CDumbbellConfig& IDumbbellConfigEvaluator::GetBest()
 {
     return m_Config;

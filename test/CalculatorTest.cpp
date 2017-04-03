@@ -8,27 +8,14 @@
 #include "Measure.h"
 #include "Unit.h"
 
+#include "ToString.h"
+
 #include <vector>
 #include <iostream>
 #include <memory>
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 using namespace unit::literals;
-
-namespace Microsoft {
-    namespace VisualStudio {
-        namespace CppUnitTestFramework {
-            template <> std::wstring ToString(const measure::CWeight& q)
-            {
-                std::wstringstream ss;
-                ss << L"Weight: " << q.Kg().Value() << L" kg";
-
-                return ss.str();
-            }
-        }
-    }
-}
-
 
 namespace test
 {		
@@ -82,8 +69,10 @@ namespace test
 
             Assert::AreEqual<size_t>(9, GetCalculator().Result().size());
 
-            CDumbbellConfig expected{ CPlates{{plate2_5}}, CPlates{{plate0_5, plate2_5}} };
-            //Assert::AreEqual(expected, GetCalculator().Result().[measure::CWeight(7.5_kg)]);
+            auto expected = CDumbbellConfig{ CPlates{{plate0_5, plate2_5}}, CPlates{{plate2_5}} };
+            auto actual = GetCalculator().Result(measure::CWeight{ 7.5_kg });
+            Assert::IsNotNull(actual);
+            Assert::AreEqual(expected, *actual);
         }
 
 

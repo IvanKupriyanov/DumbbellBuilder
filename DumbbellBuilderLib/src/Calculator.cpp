@@ -9,6 +9,9 @@
 #include <iostream>
 #include <sstream>
 
+//#define LOG
+
+#ifdef LOG
 static std::string log(const CPlates& Plates)
 {
     std::stringstream strm;
@@ -34,6 +37,7 @@ static std::string permutationToString(const std::pair<CPlates, CPlates>& Weight
 
     return strm.str();
 }
+#endif
 
 Calculator::Calculator(const IPlatesSplitStrategy& Splitter, IDumbbellConfigEvaluator& DumbbellConfigEvaluator)
     : m_SplitStrategy{ Splitter }, m_DumbbellConfigEvaluator{ DumbbellConfigEvaluator }
@@ -47,32 +51,34 @@ void Calculator::Calculate(const CDumbbellHandle & DumbbellHandle, const CPlates
     {
         CPlates combination{ comb.GetItems() };
 
+#ifdef LOG
+        std::cout << "Combination: " << log(combination) << "(" << combination.GetWeight() << "kg)\n";
+#endif
         if (combination.GetWidth() >= DumbbellHandle.GetPlatesWidth() * 2.0f)
         {
 #ifdef LOG
-            std::cout << "Combination: " << log(combination) << " width " << combination.GetWidth() << " more than " << DumbbellHandle.GetPlatesWidth() * 2.0f << "\n";
+            std::cout << "Width " << combination.GetWidth() << " more than " << DumbbellHandle.GetPlatesWidth() * 2.0f << "\n";
 #endif
             continue;
         }
 
-#ifdef LOG
-        std::cout << "Combination: " << log(combination) << "(" << combination.GetWeight() << "kg)\n";
-#endif
         CPermutationsGenerator<CPlate> perm(combination.GetPlates());
-        m_DumbbellConfigEvaluator.Reset();
+
+        const auto weightConfig = Result(combination.GetWeight() + DumbbellHandle.GetWeigth());
+        if (weightConfig == nullptr)
+            m_DumbbellConfigEvaluator.Reset();
+        else
+            m_DumbbellConfigEvaluator.Reset(*weightConfig);
+
         do
         {
             auto pair = m_SplitStrategy.Split(perm.GetItems());
-
-#ifdef LOG
-            std::cout << permutationToString(pair);
-#endif
 
             assert(pair.first.size()  > 0 || pair.second.size() > 0);
 
             bool isNewBetter = m_DumbbellConfigEvaluator.Rank(DumbbellHandle, CDumbbellConfig{ pair.first, pair.second });
 #ifdef LOG
-            std::cout << (isNewBetter ? " - USE" : " - SKIP") << '\n';
+            std::cout << permutationToString(pair) << (isNewBetter ? " - USE" : " - SKIP") << '\n';
 #endif
 
         } while (perm.Next());
@@ -88,4 +94,15 @@ void Calculator::Calculate(const CDumbbellHandle & DumbbellHandle, const CPlates
 const std::map<measure::CWeight, CDumbbellConfig>& Calculator::Result() const
 {
     return m_Result;
+}
+
+const CDumbbellConfig* Calculator::Result(const measure::CWeight& Weight) const
+{
+    auto it = m_Result.find(Weight);
+    if (it == m_Result.end())
+    {
+        return nullptr;
+    }
+
+    return &it->second;
 }

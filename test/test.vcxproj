@@ -148,6 +148,7 @@
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="ToString.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BalancedWeightEvaluatorTest.cpp" />

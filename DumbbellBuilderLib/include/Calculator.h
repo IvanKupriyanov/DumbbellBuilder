@@ -28,6 +28,7 @@ public:
 
     void Calculate(const CDumbbellHandle& DumbbellHandle, const CPlates& Plates);
     const std::map<measure::CWeight, CDumbbellConfig>& Result() const;
+    const CDumbbellConfig* Result(const measure::CWeight& Weight) const;
 
 private:
     std::map<measure::CWeight, CDumbbellConfig> m_Result;

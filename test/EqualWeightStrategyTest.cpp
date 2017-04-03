@@ -5,26 +5,13 @@
 #include "Measure.h"
 #include "Unit.h"
 
+#include "ToString.h"
+
 #include <vector>
 #include <iostream>
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 using namespace unit::literals;
-
-namespace Microsoft {
-    namespace VisualStudio {
-        namespace CppUnitTestFramework {
-            template <> std::wstring ToString(const measure::CWeight& q)
-            {
-                std::wstringstream ss;
-                ss << L"Weight: " << q.Kg().Value() << L" kg";
-
-                return ss.str();
-            }
-        }
-    }
-}
-
 
 namespace test
 {		
