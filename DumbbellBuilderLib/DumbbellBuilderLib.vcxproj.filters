@@ -23,6 +23,15 @@
     <Filter Include="Source Files\units">
       <UniqueIdentifier>{7c23f090-76af-430f-a11b-ba8baae8542d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\cli">
+      <UniqueIdentifier>{ab6cba09-a262-400b-88aa-dd8f793f9e5a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\cli">
+      <UniqueIdentifier>{b99a06c3-3de8-437a-9021-2b8032359a3a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\model">
+      <UniqueIdentifier>{c37601aa-a3e2-4035-89aa-d25615dc9a8a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Calculator.h">
@@ -52,8 +61,8 @@
     <ClInclude Include="include\Unit.h">
       <Filter>include\units</Filter>
     </ClInclude>
-    <ClInclude Include="src\picojson.h">
-      <Filter>Source Files</Filter>
+    <ClInclude Include="include\CommandLineParser.h">
+      <Filter>include\cli</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -68,6 +77,12 @@
     </ClCompile>
     <ClCompile Include="src\Calculator.cpp">
       <Filter>Source Files\computation</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CommandLineParser.cpp">
+      <Filter>Source Files\cli</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Plate.cpp">
+      <Filter>Source Files\model</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

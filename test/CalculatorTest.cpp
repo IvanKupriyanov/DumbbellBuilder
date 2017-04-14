@@ -75,6 +75,33 @@ namespace test
             Assert::AreEqual(expected, *actual);
         }
 
+        TEST_METHOD(Wrong18_75)
+        {
+            Init();
+
+            CPlates plates;
+            plates.Add(plate0_5);
+            plates.Add(plate1_25);
+            plates.Add(plate2_5);
+            plates.Add(plate2_5);
+            plates.Add(plate5_0);
+            plates.Add(plate5_0);
+            plates.Add(plate5_0);
+            plates.Add(plate5_0);
+            plates.Add(plate10_0);
+
+            GetCalculator().Calculate(m_Handle, plates);
+
+            Assert::AreEqual<size_t>(55, GetCalculator().Result().size());
+
+            CPlates left{ { plate1_25, plate2_5, plate5_0 } };
+            CPlates right{ { plate0_5, plate2_5, plate5_0 } };
+            CDumbbellConfig expected = CDumbbellConfig{ left, right };
+            auto actual = GetCalculator().Result(measure::CWeight{ 18.75_kg });
+            Assert::IsNotNull(actual);
+            Assert::AreEqual(expected, *actual);
+        }
+
 
     private:
 

@@ -165,6 +165,9 @@ struct CHeight : public CLength<CHeight>
 {
     typedef CLength<CHeight> TBase;
 
+    CHeight() : TBase()
+    {}
+
     explicit CHeight(unit::CMillimeter Val) : TBase(Val)
     {}
 

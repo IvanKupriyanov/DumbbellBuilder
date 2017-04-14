@@ -3,10 +3,14 @@
 namespace unit
 {
 
+template <typename TOut, typename TIn>
+inline TOut Convert(const TIn& Value);
+
 template <typename T>
 struct CUnit
 {
     using TUnit = CUnit<T>;
+    using TType = T;
 
 	explicit CUnit()
 	{
@@ -31,6 +35,12 @@ struct CUnit
     void Set(float NewValue)
     {
         m_Value = NewValue;
+    }
+
+    template <typename TOut>
+    TOut To() const
+    {
+        return Convert<TOut>((T&)*this);
     }
 
 private:
@@ -160,6 +170,21 @@ T operator* (const CUnit<T>& Lhs, const float& Rhs)
 {
     return T(Lhs.Value() * Rhs);
 }
+
+template <typename TOut, typename TIn>
+inline TOut Convert(const TIn& Value)
+{
+    // TODO: make converter methods
+    static_assert(false, "Should provide proper specialization");
+    return TOut();
+}
+
+template<>
+inline CMillimeter Convert(const CCentimeter& Value)
+{
+    return CMillimeter{ Value.Value() * 10.0f };
+}
+
 
 
 } // namespace metric

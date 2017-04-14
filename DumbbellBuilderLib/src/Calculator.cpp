@@ -76,7 +76,8 @@ void Calculator::Calculate(const CDumbbellHandle & DumbbellHandle, const CPlates
 
             assert(pair.first.size()  > 0 || pair.second.size() > 0);
 
-            bool isNewBetter = m_DumbbellConfigEvaluator.Rank(DumbbellHandle, CDumbbellConfig{ pair.first, pair.second });
+            bool isNewBetter = m_DumbbellConfigEvaluator.Rank(DumbbellHandle, CDumbbellConfig{ pair.first, pair.second }); isNewBetter;
+            
 #ifdef LOG
             std::cout << permutationToString(pair) << (isNewBetter ? " - USE" : " - SKIP") << '\n';
 #endif

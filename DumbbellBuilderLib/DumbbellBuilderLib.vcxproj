@@ -70,7 +70,12 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IncludePath>$(ProjectDir)\libs;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <IncludePath>$(ProjectDir)\libs;$(IncludePath)</IncludePath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <PrecompiledHeader>
@@ -132,6 +137,7 @@
   <ItemGroup>
     <ClInclude Include="include\Calculator.h" />
     <ClInclude Include="include\CombinationsGenerator.h" />
+    <ClInclude Include="include\CommandLineParser.h" />
     <ClInclude Include="include\Dumbbell.h" />
     <ClInclude Include="include\DumbbellConfigEvaluator.h" />
     <ClInclude Include="include\Measure.h" />
@@ -139,13 +145,14 @@
     <ClInclude Include="include\PermutationsGenerator.h" />
     <ClInclude Include="include\Plate.h" />
     <ClInclude Include="include\PlatesSplitStrategy.h" />
-    <ClInclude Include="src\picojson.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Calculator.cpp" />
+    <ClCompile Include="src\CommandLineParser.cpp" />
     <ClCompile Include="src\Dumbbell.cpp" />
     <ClCompile Include="src\DumbbellConfigEvaluator.cpp" />
     <ClCompile Include="src\Metric.cpp" />
+    <ClCompile Include="src\Plate.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

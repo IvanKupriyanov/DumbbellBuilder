@@ -192,6 +192,30 @@ namespace test
 
 
 
+        // 17 kg.
+        // 
+        TEST_METHOD(TestBalanceFor18_75kg)
+        {
+            Init();
+
+            {
+                CPlates left{ { plate0_5, plate2_5, plate5_0 } };
+                CPlates right{ { plate1_25, plate2_5, plate5_0 } };
+                CDumbbellConfig config = CDumbbellConfig{ left, right };
+
+                Assert::IsTrue(m_Evaluator.Rank(m_Handle, config));
+            }
+
+            {
+                CPlates left{ { plate10_0 } };
+                CPlates right{ { plate0_5, plate1_25, plate5_0 } };
+                CDumbbellConfig config = CDumbbellConfig{ left, right };
+
+                Assert::IsFalse(m_Evaluator.Rank(m_Handle, config));
+            }
+        }
+
+
 
     private:
 
