@@ -1,9 +1,6 @@
 #include "CommandLineParser.h"
 #include <tclap\CmdLine.h>
 
-
-// operator= will be used to assign to the vector
-
 struct CPlateData
 {
     CPlateData()
@@ -60,27 +57,32 @@ namespace TCLAP {
 void CCommandLineParser::Parse(int argc, const char* const* argv)
 {
     TCLAP::CmdLine cmd{ "Dumbbell config calculator" };
-    TCLAP::ValueArg<bool> weightAsStringArg{
-        "s", "double_to_string", "Save double as string (when weight parsed as date).",
-        false, false, "bool", cmd };
+    TCLAP::SwitchArg exportFloatAsStringArg{
+        "s", "float_to_string", "Save float as string (when Excel parses weight as date).", false};
+    cmd.add(exportFloatAsStringArg);
 
-    TCLAP::ValueArg<bool> useLocalArg{
-        "l", "use_local", "Use local settings for double format.",
-        false, false, "bool", cmd };
+    TCLAP::SwitchArg localAwareFormatArg{
+        "l", "local_aware_format", "Use local settings for double format.", false};
+    cmd.add(localAwareFormatArg);
 
-    TCLAP::ValueArg<double> handleWeightArg{
+    TCLAP::ValueArg<float> handleWeightArg{
         "m", "handle_weight", "Weight of dumbbell handle.",
         true, 0.0, "kg", cmd };
 
-    TCLAP::ValueArg<double> handleWidthArg{
-        "w", "handle_width", "Width of plates area on dumbbell handle.",
+    TCLAP::ValueArg<float> handleWidthArg{
+        "w", "handle_plates_area_width", "Width of plates area on dumbbell handle.",
         true, 0.0, "mm", cmd };
 
     TCLAP::MultiArg<CPlateData> platesArg{
-        "p", "plate", "Plate description: weight(kg),width(mm),height(mm)",
-        true, "double(weight_kg),double(width_mm),double(height_mm),int(count)", cmd };
+        "p", "plate", "Plate description: weight(kg), width(mm), height(mm), available plates count",
+        true, "float(weight_kg) float(width_mm) float(height_mm) int(count)", cmd };
+
     cmd.parse(argc, argv);
 
+    m_ExportFloatAsString = exportFloatAsStringArg.getValue();
+    m_LocalAwareFormat = localAwareFormatArg.getValue();
+    m_HandleWeight = measure::CWeight{ unit::CKilogram { handleWeightArg.getValue() } };
+    m_HandleWidth = measure::CWidth{ unit::CMillimeter { handleWidthArg.getValue() } };
     for (const auto& data : platesArg)
     {
         for (int i = 0; i < data.Count; i++)
@@ -88,6 +90,26 @@ void CCommandLineParser::Parse(int argc, const char* const* argv)
     }
 }
 
+
+bool CCommandLineParser::ExportFloatAsString() const
+{
+    return m_ExportFloatAsString;
+}
+
+bool CCommandLineParser::LocalAwareFormat() const
+{
+    return m_LocalAwareFormat;
+}
+
+measure::CWeight CCommandLineParser::HandleWeight() const
+{
+    return m_HandleWeight;
+}
+
+measure::CWidth CCommandLineParser::HandleWidth() const
+{
+    return m_HandleWidth;
+}
 
 const CPlates& CCommandLineParser::Plates() const
 {

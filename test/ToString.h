@@ -7,7 +7,7 @@
 namespace Microsoft {
     namespace VisualStudio {
         namespace CppUnitTestFramework {
-            template <> std::wstring ToString(const measure::CWeight& q)
+            template <> inline std::wstring ToString(const measure::CWeight& q)
             {
                 std::wstringstream ss;
                 ss << L"Weight: " << q.Kg().Value() << L" kg";
@@ -15,7 +15,22 @@ namespace Microsoft {
                 return ss.str();
             }
 
-            template <> std::wstring ToString(const CPlates& Plates)
+            template <> inline std::wstring ToString(const measure::CWidth& q)
+            {
+                std::wstringstream ss;
+                ss << L"Width: " << q.Mm().Value() << L" mm";
+
+                return ss.str();
+            }
+
+            template <> inline std::wstring ToString(const CPlate& Plate)
+            {
+                std::wstringstream ss;
+                ss << L"Plate{ " << ToString(Plate.GetWeight()) << ", " << ToString(Plate.GetWidth()) << "}";
+                return ss.str();
+            }
+
+            template <> inline std::wstring ToString(const CPlates& Plates)
             {
                 std::wstringstream ss;
 
@@ -29,7 +44,7 @@ namespace Microsoft {
                 return ss.str();
             }
 
-            template <> std::wstring ToString(const CDumbbellConfig& q)
+            template <> inline std::wstring ToString(const CDumbbellConfig& q)
             {
                 std::wstringstream ss;
                 ss << L"Left: [" << ToString(q.LeftSide()) << L"], Right: [" << ToString(q.RightSide()) << L"]";

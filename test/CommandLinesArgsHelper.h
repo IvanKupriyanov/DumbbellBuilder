@@ -1,5 +1,6 @@
 #pragma once
 #include "Measure.h"
+#include "Plate.h"
 
 #include <vector>
 #include <memory>
@@ -14,12 +15,11 @@ public:
     Args(const std::vector<std::string>& ArgsList) : m_Size{ 0 }
     {
         std::stringstream ss;
-        m_Array.push_back(std::move(toArray("app.exe")));
+        AddArg("app.exe");
         for (const auto& arg : ArgsList)
         {
             ss << arg << " ";
-            m_Array.push_back(std::move(toArray(arg)));
-            m_Size++;
+            AddArg(arg);
         }
 
         m_CmdLine = ss.str();
@@ -41,6 +41,13 @@ public:
     }
 
 private:
+    void AddArg(const std::string& Arg)
+    {
+        m_Array.push_back(std::move(toArray(Arg)));
+        m_Size++;
+    }
+
+
     std::unique_ptr<char[]> toArray(const std::string& Str) const
     {
         std::unique_ptr<char[]> arr = std::make_unique<char[]>(Str.size() + 1);
@@ -71,8 +78,28 @@ public:
     ArgsBuilder& HandleWidth(const TWidth& Width)
     {
         std::stringstream ss;
-        ss << "--handle_width " << Width.Mm().Value();
+        ss << "--handle_plates_area_width " << Width.Mm().Value();
         m_Args.push_back(ss.str());
+
+        return *this;
+    }
+
+    ArgsBuilder& LocalAwareFormat(bool Value)
+    {
+        if (Value)
+        {
+            m_Args.push_back("--local_aware_format");
+        }
+
+        return *this;
+    }
+
+    ArgsBuilder& ExportFloatAsString(bool Value)
+    {
+        if (Value)
+        {
+            m_Args.push_back("--float_to_string");
+        }
 
         return *this;
     }
@@ -80,7 +107,7 @@ public:
     ArgsBuilder Plate(TWeight Weight, TWidth Width, THeight Height, int Count)
     {
         std::stringstream ss;
-        ss << "-p"
+        ss << "--plate"
             << " " << Weight.Kg().Value()
             << " " << Width.Mm().Value()
             << " " << Height.Mm().Value()
@@ -89,6 +116,11 @@ public:
         m_Args.push_back(ss.str());
 
         return *this;
+    }
+
+    ArgsBuilder Plate(const CPlate& NewPlate, int Count)
+    {
+        return Plate(NewPlate.GetWeight(), NewPlate.GetWidth(), NewPlate.GetHeight(), Count);
     }
 
     Args Build() const
