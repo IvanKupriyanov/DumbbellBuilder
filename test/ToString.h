@@ -1,5 +1,5 @@
-#include "Measure.h"
-#include "Dumbbell.h"
+#include "units/Units.h"
+#include "model/Dumbbell.h"
 
 #include <vector>
 #include <sstream>

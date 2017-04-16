@@ -1,8 +1,8 @@
-#include "Calculator.h"
+#include "computation/Calculator.h"
 
-#include "CombinationsGenerator.h"
-#include "PermutationsGenerator.h"
-#include "Dumbbell.h"
+#include "computation/CombinationsGenerator.h"
+#include "computation/PermutationsGenerator.h"
+#include "model/Dumbbell.h"
 
 #include <vector>
 #include <algorithm>

@@ -1,8 +1,8 @@
 #include "stdafx.h"
 #include "CppUnitTest.h"
 
-#include "PlatesSplitStrategy.h"
-#include "Units.h"
+#include "computation/PlatesSplitStrategy.h"
+#include "units/Units.h"
 
 #include "ToString.h"
 

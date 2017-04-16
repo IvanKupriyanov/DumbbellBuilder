@@ -1,5 +1,5 @@
 #pragma once
-#include "Dumbbell.h"
+#include "model/Dumbbell.h"
 #include <algorithm>
 
 struct IDumbbellConfigEvaluator

@@ -2,8 +2,8 @@
 
 #include "DumbbellConfigEvaluator.h"
 #include "PlatesSplitStrategy.h"
-#include "Plate.h"
-#include "Units.h"
+#include "model/Plate.h"
+#include "units/Units.h"
 
 #include <map>
 #include <ostream>

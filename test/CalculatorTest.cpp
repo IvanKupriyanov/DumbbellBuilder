@@ -1,11 +1,11 @@
 #include "stdafx.h"
 #include "CppUnitTest.h"
 
-#include "Calculator.h"
-#include "PlatesSplitStrategy.h"
-#include "DumbbellConfigEvaluator.h"
+#include "computation/Calculator.h"
+#include "computation/PlatesSplitStrategy.h"
+#include "computation/DumbbellConfigEvaluator.h"
 
-#include "Units.h"
+#include "units/Units.h"
 
 #include "ToString.h"
 

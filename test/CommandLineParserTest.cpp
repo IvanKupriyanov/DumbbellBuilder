@@ -2,9 +2,9 @@
 #include "CppUnitTest.h"
 
 #include "CommandLinesArgsHelper.h"
-#include "Units.h"
-#include "CommandLineParser.h"
-#include "Plate.h"
+#include "units/Units.h"
+#include "cli/CommandLineParser.h"
+#include "model/Plate.h"
 
 #include "ToString.h"
 

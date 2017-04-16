@@ -1,6 +1,6 @@
-#include "DumbbellConfigEvaluator.h"
+#include "computation/DumbbellConfigEvaluator.h"
 
-#include "Dumbbell.h"
+#include "model/Dumbbell.h"
 
 #include <algorithm>
 

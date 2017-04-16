@@ -20,9 +20,6 @@
     <Filter Include="Source Files\computation">
       <UniqueIdentifier>{513e469b-48ad-4c9c-bcc8-0c054cd5f17b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\units">
-      <UniqueIdentifier>{7c23f090-76af-430f-a11b-ba8baae8542d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\cli">
       <UniqueIdentifier>{ab6cba09-a262-400b-88aa-dd8f793f9e5a}</UniqueIdentifier>
     </Filter>
@@ -34,66 +31,63 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\Calculator.h">
-      <Filter>include\computation</Filter>
-    </ClInclude>
-    <ClInclude Include="include\CombinationsGenerator.h">
-      <Filter>include\computation</Filter>
-    </ClInclude>
-    <ClInclude Include="include\DumbbellConfigEvaluator.h">
-      <Filter>include\computation</Filter>
-    </ClInclude>
-    <ClInclude Include="include\PermutationsGenerator.h">
-      <Filter>include\computation</Filter>
-    </ClInclude>
-    <ClInclude Include="include\PlatesSplitStrategy.h">
-      <Filter>include\computation</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Dumbbell.h">
-      <Filter>include\model</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Plate.h">
-      <Filter>include\model</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Measure.h">
-      <Filter>include\units</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Unit.h">
-      <Filter>include\units</Filter>
-    </ClInclude>
-    <ClInclude Include="include\CommandLineParser.h">
+    <ClInclude Include="include\cli\CommandLineParser.h">
       <Filter>include\cli</Filter>
     </ClInclude>
-    <ClInclude Include="include\Conversion.h">
+    <ClInclude Include="include\computation\Calculator.h">
+      <Filter>include\computation</Filter>
+    </ClInclude>
+    <ClInclude Include="include\computation\CombinationsGenerator.h">
+      <Filter>include\computation</Filter>
+    </ClInclude>
+    <ClInclude Include="include\computation\DumbbellConfigEvaluator.h">
+      <Filter>include\computation</Filter>
+    </ClInclude>
+    <ClInclude Include="include\computation\PermutationsGenerator.h">
+      <Filter>include\computation</Filter>
+    </ClInclude>
+    <ClInclude Include="include\computation\PlatesSplitStrategy.h">
+      <Filter>include\computation</Filter>
+    </ClInclude>
+    <ClInclude Include="include\units\Conversion.h">
       <Filter>include\units</Filter>
     </ClInclude>
-    <ClInclude Include="include\MeasureOperators.h">
+    <ClInclude Include="include\units\Measure.h">
       <Filter>include\units</Filter>
     </ClInclude>
-    <ClInclude Include="include\UnitOperator.h">
+    <ClInclude Include="include\units\MeasureOperators.h">
       <Filter>include\units</Filter>
     </ClInclude>
-    <ClInclude Include="include\Units.h">
+    <ClInclude Include="include\units\Unit.h">
       <Filter>include\units</Filter>
+    </ClInclude>
+    <ClInclude Include="include\units\UnitOperator.h">
+      <Filter>include\units</Filter>
+    </ClInclude>
+    <ClInclude Include="include\units\Units.h">
+      <Filter>include\units</Filter>
+    </ClInclude>
+    <ClInclude Include="include\model\Dumbbell.h">
+      <Filter>include\model</Filter>
+    </ClInclude>
+    <ClInclude Include="include\model\Plate.h">
+      <Filter>include\model</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Dumbbell.cpp">
-      <Filter>include\model</Filter>
-    </ClCompile>
-    <ClCompile Include="src\DumbbellConfigEvaluator.cpp">
-      <Filter>Source Files\computation</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Metric.cpp">
-      <Filter>Source Files\units</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Calculator.cpp">
-      <Filter>Source Files\computation</Filter>
-    </ClCompile>
-    <ClCompile Include="src\CommandLineParser.cpp">
+    <ClCompile Include="src\cli\CommandLineParser.cpp">
       <Filter>Source Files\cli</Filter>
     </ClCompile>
-    <ClCompile Include="src\Plate.cpp">
+    <ClCompile Include="src\computation\Calculator.cpp">
+      <Filter>Source Files\computation</Filter>
+    </ClCompile>
+    <ClCompile Include="src\computation\DumbbellConfigEvaluator.cpp">
+      <Filter>Source Files\computation</Filter>
+    </ClCompile>
+    <ClCompile Include="src\model\Plate.cpp">
+      <Filter>Source Files\model</Filter>
+    </ClCompile>
+    <ClCompile Include="src\model\Dumbbell.cpp">
       <Filter>Source Files\model</Filter>
     </ClCompile>
   </ItemGroup>

@@ -1,8 +1,6 @@
-#include "Calculator.h"
-#include "Measure.h"
-#include "Unit.h"
-#include "Conversion.h"
-#include "CommandLineParser.h"
+#include "computation/Calculator.h"
+#include "units/Units.h"
+#include "cli/CommandLineParser.h"
 
 #include <iostream>
 #include <sstream>

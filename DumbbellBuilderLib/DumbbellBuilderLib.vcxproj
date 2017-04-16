@@ -135,28 +135,27 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="include\Calculator.h" />
-    <ClInclude Include="include\CombinationsGenerator.h" />
-    <ClInclude Include="include\CommandLineParser.h" />
-    <ClInclude Include="include\Conversion.h" />
-    <ClInclude Include="include\Dumbbell.h" />
-    <ClInclude Include="include\DumbbellConfigEvaluator.h" />
-    <ClInclude Include="include\Measure.h" />
-    <ClInclude Include="include\MeasureOperators.h" />
-    <ClInclude Include="include\Unit.h" />
-    <ClInclude Include="include\PermutationsGenerator.h" />
-    <ClInclude Include="include\Plate.h" />
-    <ClInclude Include="include\PlatesSplitStrategy.h" />
-    <ClInclude Include="include\UnitOperator.h" />
-    <ClInclude Include="include\Units.h" />
+    <ClInclude Include="include\cli\CommandLineParser.h" />
+    <ClInclude Include="include\computation\Calculator.h" />
+    <ClInclude Include="include\computation\CombinationsGenerator.h" />
+    <ClInclude Include="include\computation\DumbbellConfigEvaluator.h" />
+    <ClInclude Include="include\computation\PermutationsGenerator.h" />
+    <ClInclude Include="include\computation\PlatesSplitStrategy.h" />
+    <ClInclude Include="include\model\Dumbbell.h" />
+    <ClInclude Include="include\model\Plate.h" />
+    <ClInclude Include="include\units\Conversion.h" />
+    <ClInclude Include="include\units\Measure.h" />
+    <ClInclude Include="include\units\MeasureOperators.h" />
+    <ClInclude Include="include\units\Unit.h" />
+    <ClInclude Include="include\units\UnitOperator.h" />
+    <ClInclude Include="include\units\Units.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Calculator.cpp" />
-    <ClCompile Include="src\CommandLineParser.cpp" />
-    <ClCompile Include="src\Dumbbell.cpp" />
-    <ClCompile Include="src\DumbbellConfigEvaluator.cpp" />
-    <ClCompile Include="src\Metric.cpp" />
-    <ClCompile Include="src\Plate.cpp" />
+    <ClCompile Include="src\cli\CommandLineParser.cpp" />
+    <ClCompile Include="src\computation\Calculator.cpp" />
+    <ClCompile Include="src\computation\DumbbellConfigEvaluator.cpp" />
+    <ClCompile Include="src\model\Dumbbell.cpp" />
+    <ClCompile Include="src\model\Plate.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

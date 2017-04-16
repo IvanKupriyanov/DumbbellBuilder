@@ -1,6 +1,6 @@
 #pragma once
-#include "Plate.h"
-#include "Units.h"
+#include "model/Plate.h"
+#include "units/Units.h"
 
 struct IPlatesSplitStrategy
 {

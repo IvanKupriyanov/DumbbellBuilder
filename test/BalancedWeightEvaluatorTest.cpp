@@ -1,8 +1,8 @@
 #include "stdafx.h"
 #include "CppUnitTest.h"
 
-#include "DumbbellConfigEvaluator.h"
-#include "Units.h"
+#include "computation/DumbbellConfigEvaluator.h"
+#include "units/Units.h"
 
 #include "ToString.h"
 
