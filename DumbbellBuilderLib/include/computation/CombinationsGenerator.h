@@ -38,7 +38,7 @@ private:
 
         if (m_Value[Index])
         {
-			// carry
+            // carry
             m_Value[Index] = false;
             return Increment(Index + 1);
         }

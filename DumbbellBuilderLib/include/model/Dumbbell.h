@@ -16,7 +16,7 @@ public:
     CDumbbellConfig(const CPlates& LeftSide, const CPlates& RightSide)
         : m_LeftSide{ LeftSide }, 
           m_RightSide{ RightSide }
-	{
+    {
     }
 
     const CPlates& LeftSide() const
@@ -46,7 +46,7 @@ public:
         return true;
     }
 private:
-	CPlates m_LeftSide, m_RightSide;
+    CPlates m_LeftSide, m_RightSide;
 };
 
 

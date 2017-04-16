@@ -17,14 +17,14 @@ using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 using namespace unit::literals;
 
 namespace test
-{		
+{
     using TWeight = measure::CWeight;
     using TWidth  = measure::CWidth;
     using THeight = measure::CHeight;
 
     TEST_CLASS(CalculatorTest)
-	{
-	public:
+    {
+    public:
 
         TEST_METHOD(WithOnePlate_ShouldMakeConfigWithThisPlate)
         {
@@ -144,5 +144,5 @@ namespace test
         CPlate plate5_0 { TWeight::Create(5.0_kg),  TWidth::Create(30.0_mm), THeight::Create(10.0_cm) };
         CPlate plate10_0{ TWeight::Create(10.0_kg), TWidth::Create(30.0_mm), THeight::Create(10.0_cm) };
 
-	};
+    };
 }

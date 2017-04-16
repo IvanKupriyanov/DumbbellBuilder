@@ -12,10 +12,10 @@ struct CUnit
     using TUnit = CUnit<T>;
     using TType = T;
 
-	explicit CUnit()
-	{
-		m_Value = 0.0f;
-	}
+    explicit CUnit()
+    {
+        m_Value = 0.0f;
+    }
 
 
     CUnit(const TUnit& Val) : m_Value{ Val.m_Value }
@@ -28,9 +28,9 @@ struct CUnit
     }
 
     float Value() const
-	{
-		return m_Value;
-	}
+    {
+        return m_Value;
+    }
 
     void Set(float NewValue)
     {
@@ -44,7 +44,7 @@ struct CUnit
     }
 
 private:
-	float m_Value;
+    float m_Value;
 };
 
 
@@ -56,10 +56,10 @@ struct CMillimeter : CUnit<CMillimeter>
     {}
 
     explicit CMillimeter(float Val) : CUnit<CMillimeter>(Val)
-	{}
+    {}
 
-	CMillimeter(const CMillimeter& Val) : CUnit<CMillimeter>(Val.Value())
-	{}
+    CMillimeter(const CMillimeter& Val) : CUnit<CMillimeter>(Val.Value())
+    {}
 };
 
 
@@ -91,10 +91,10 @@ struct CKilogram : CUnit<CKilogram>
     {}
     
     explicit CKilogram(float Val) : TBase(Val)
-	{}
+    {}
 
-	CKilogram(const CKilogram& Val) : TBase(Val.Value())
-	{}
+    CKilogram(const CKilogram& Val) : TBase(Val.Value())
+    {}
 };
 
 
