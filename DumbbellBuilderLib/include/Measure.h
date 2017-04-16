@@ -5,10 +5,12 @@
 namespace measure
 {
 
-template <typename T, typename TUnit>
+template <typename TMeasureType, typename TMeasureUnit>
 struct CMeasure
 {
-    using TMeasure = CMeasure<T, TUnit>;
+    using TMeasure = CMeasure<TMeasureType, TMeasureUnit>;
+    using TUnit = TMeasureUnit;
+
     explicit CMeasure() : m_Value{}
     {}
 
@@ -32,84 +34,11 @@ protected:
 };
 
 
-template <typename T, typename TUnit>
-bool operator > (const CMeasure<T, TUnit>& Left, const CMeasure<T, TUnit>& Right)
-{
-    return Left.Unit() > Right.Unit();
-}
-
-
-template <typename T, typename TUnit>
-bool operator >= (const CMeasure<T, TUnit>& Left, const CMeasure<T, TUnit>& Right)
-{
-    return Left.Unit() >= Right.Unit();
-}
-
-
-template <typename T, typename TUnit>
-bool operator < (const CMeasure<T, TUnit>& Lhs, const CMeasure<T, TUnit>& Rhs)
-{
-    return Lhs.Unit() < Rhs.Unit();
-}
-
-
-template <typename T, typename TUnit>
-bool operator == (const CMeasure<T, TUnit>& Lhs, const CMeasure<T, TUnit>& Rhs)
-{
-    return Lhs.Unit() == Rhs.Unit();
-}
-
-
-template <typename T, typename TUnit>
-bool operator != (const CMeasure<T, TUnit>& Lhs, const CMeasure<T, TUnit>& Rhs)
-{
-    return !(Lhs == Rhs);
-}
-
-
-template <typename T, typename TUnit>
-const CMeasure<T, TUnit>& operator+= (CMeasure<T, TUnit>& Lhs, const CMeasure<T, TUnit>& Rhs)
-{
-    Lhs.Set(Lhs.Unit() + Rhs.Unit());
-    return Lhs;
-}
-
-
-template <typename T, typename TUnit>
-T operator- (const CMeasure<T, TUnit>& Lhs, const CMeasure<T, TUnit>& Rhs)
-{
-    const TUnit& lhs{ Lhs.Unit() };
-    const TUnit& rhs{ Rhs.Unit() };
-    TUnit res = lhs - rhs;
-    return T::Create(res);
-}
-
-
-template <typename T, typename TUnit>
-T operator+ (const CMeasure<T, TUnit>& Lhs, const CMeasure<T, TUnit>& Rhs)
-{
-    const TUnit& lhs{ Lhs.Unit() };
-    const TUnit& rhs{ Rhs.Unit() };
-    TUnit res = lhs + rhs;
-    return T::Create(res);
-}
-
-
-template <typename T, typename TUnit>
-T operator* (const CMeasure<T, TUnit>& Lhs, const float& Rhs)
-{
-    const TUnit& lhs{ Lhs.Unit() };
-    TUnit res = lhs * Rhs;
-    return T::Create(res);
-}
-
-
 template <typename T>
 struct CLength : public CMeasure<T, unit::CMillimeter>
 {
 public:
     using TBase = CMeasure<T, unit::CMillimeter>;
-    using TUnit = unit::CMillimeter;
 
     unit::CMillimeter Mm() const
     {
@@ -129,12 +58,12 @@ public:
 
 struct CWeight : public CMeasure<CWeight, unit::CKilogram>
 {
-    typedef CMeasure<CWeight, unit::CKilogram> TBase;
+    using TBase = CMeasure<CWeight, unit::CKilogram>;
 
     template <typename T>
     static CWeight Create(const T& Unit)
     {
-        return CWeight(Unit.To<unit::CKilogram>());
+        return CWeight(Unit.To<CMeasure::TUnit>());
     }
 
     CWeight() : TBase()
@@ -167,7 +96,7 @@ struct CWidth : public CLength<CWidth>
     template <typename T>
     static CWidth Create(const T& Unit)
     {
-        return CWidth(Unit.To<CLength::TUnit>());
+        return CWidth(Unit.To<CMeasure::TUnit>());
     }
 
 private:
@@ -183,7 +112,7 @@ struct CHeight : public CLength<CHeight>
     template <typename T>
     static CHeight Create(const T& Unit)
     {
-        return CHeight(Unit.To<CLength::TUnit>());
+        return CHeight(Unit.To<CMeasure::TUnit>());
     }
 
     CHeight() : TBase()

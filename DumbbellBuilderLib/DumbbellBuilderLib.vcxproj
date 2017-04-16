@@ -142,10 +142,13 @@
     <ClInclude Include="include\Dumbbell.h" />
     <ClInclude Include="include\DumbbellConfigEvaluator.h" />
     <ClInclude Include="include\Measure.h" />
+    <ClInclude Include="include\MeasureOperators.h" />
     <ClInclude Include="include\Unit.h" />
     <ClInclude Include="include\PermutationsGenerator.h" />
     <ClInclude Include="include\Plate.h" />
     <ClInclude Include="include\PlatesSplitStrategy.h" />
+    <ClInclude Include="include\UnitOperator.h" />
+    <ClInclude Include="include\Units.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Calculator.cpp" />

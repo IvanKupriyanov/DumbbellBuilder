@@ -1,6 +1,7 @@
 #include "DumbbellConfigEvaluator.h"
 
 #include "Dumbbell.h"
+
 #include <algorithm>
 
 IDumbbellConfigEvaluator::~IDumbbellConfigEvaluator()

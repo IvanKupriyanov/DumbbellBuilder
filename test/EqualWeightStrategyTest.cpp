@@ -2,8 +2,7 @@
 #include "CppUnitTest.h"
 
 #include "PlatesSplitStrategy.h"
-#include "Measure.h"
-#include "Unit.h"
+#include "Units.h"
 
 #include "ToString.h"
 

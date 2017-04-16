@@ -3,8 +3,7 @@
 #include "DumbbellConfigEvaluator.h"
 #include "PlatesSplitStrategy.h"
 #include "Plate.h"
-#include "Measure.h"
-#include "Unit.h"
+#include "Units.h"
 
 #include <map>
 #include <ostream>

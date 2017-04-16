@@ -67,6 +67,15 @@
     <ClInclude Include="include\Conversion.h">
       <Filter>include\units</Filter>
     </ClInclude>
+    <ClInclude Include="include\MeasureOperators.h">
+      <Filter>include\units</Filter>
+    </ClInclude>
+    <ClInclude Include="include\UnitOperator.h">
+      <Filter>include\units</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Units.h">
+      <Filter>include\units</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Dumbbell.cpp">
