@@ -68,8 +68,10 @@ class ArgsBuilder
 public:
     ArgsBuilder& HandleWeight(const TWeight& Weight)
     {
+        m_Args.push_back("--handle_weight");
+
         std::stringstream ss;
-        ss << "--handle_weight " << Weight.Kg().Value();
+        ss << Weight.Kg().Value();
         m_Args.push_back(ss.str());
 
         return *this;
@@ -77,8 +79,10 @@ public:
 
     ArgsBuilder& HandleWidth(const TWidth& Width)
     {
+        m_Args.push_back("--handle_plates_area_width");
+
         std::stringstream ss;
-        ss << "--handle_plates_area_width " << Width.Mm().Value();
+        ss << Width.Mm().Value();
         m_Args.push_back(ss.str());
 
         return *this;
@@ -106,12 +110,13 @@ public:
 
     ArgsBuilder Plate(TWeight Weight, TWidth Width, THeight Height, int Count)
     {
+        m_Args.push_back("--plate");
+
         std::stringstream ss;
-        ss << "--plate"
-            << " " << Weight.Kg().Value()
-            << " " << Width.Mm().Value()
-            << " " << Height.Mm().Value()
-            << " " << Count;
+        ss << Weight.Kg().Value() << " "
+           << Width.Mm().Value() << " "
+           << Height.Mm().Value() << " "
+           << Count ;
 
         m_Args.push_back(ss.str());
 

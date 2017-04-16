@@ -5,11 +5,11 @@
 #include <iostream>
 #include <sstream>
 
-std::ostream& platesToCsv(std::ostream& strm, const std::vector<CPlate>& Plates, bool saveWeightAsString)
+std::ostream& platesToCsv(std::ostream& strm, const std::vector<CPlate>& Plates, bool ExportFloatAsString)
 {
     for (const auto& plate : Plates)
     {
-        if (saveWeightAsString)
+        if (ExportFloatAsString)
             strm << "=\"" << plate.GetWeight().Kg().Value() << "\";";
         else
             strm << plate.GetWeight().Kg().Value() << ";";
@@ -19,19 +19,19 @@ std::ostream& platesToCsv(std::ostream& strm, const std::vector<CPlate>& Plates,
 }
 
 
-std::string resultToCsv(const std::map<measure::CWeight, CDumbbellConfig>& result, bool saveWeightAsString, bool useLocal)
+std::string resultToCsv(const std::map<measure::CWeight, CDumbbellConfig>& result, bool ExportFloatAsString, bool LocalAwareFormat)
 {
     std::stringstream output;
 
-    if (useLocal)
+    if (LocalAwareFormat)
         output.imbue(std::locale(""));
 
     for (const auto& cfg : result)
     {
         output << cfg.first.Kg().Value() << ";";
-        platesToCsv(output, cfg.second.LeftSide().GetPlates(), saveWeightAsString);
+        platesToCsv(output, cfg.second.LeftSide().GetPlates(), ExportFloatAsString);
         output << "|===|;";
-        platesToCsv(output, cfg.second.RightSide().GetPlates(), saveWeightAsString);
+        platesToCsv(output, cfg.second.RightSide().GetPlates(), ExportFloatAsString);
         output << "\n";
     }
 
@@ -43,54 +43,26 @@ int main(int argc, char** argv)
 {
     using namespace unit::literals;
     argc; argv;
+    CCommandLineParser options;
 
-
-    CPlate plate05 { measure::CWeight::Create(0.5_kg),  measure::CWidth::Create(10.0_mm), measure::CHeight::Create(10.0_mm) };
-    CPlate plate125{ measure::CWeight::Create(1.25_kg), measure::CWidth::Create(18.0_mm), measure::CHeight::Create(10.0_mm) };
-    CPlate plate25 { measure::CWeight::Create(2.5_kg),  measure::CWidth::Create(22.0_mm), measure::CHeight::Create(10.0_mm) };
-    CPlate plate5  { measure::CWeight::Create(5.0_kg),  measure::CWidth::Create(30.0_mm), measure::CHeight::Create(10.0_mm) };
-    CPlate plate10 { measure::CWeight::Create(10.0_kg), measure::CWidth::Create(30.0_mm), measure::CHeight::Create(10.0_mm) };
-
-    CPlates plates;
-    plates.Add(plate05);
-
-    plates.Add(plate125);
-
-    plates.Add(plate25);
-    plates.Add(plate25);
-    
-    plates.Add(plate5);
-    plates.Add(plate5);
-    plates.Add(plate5);
-
-    plates.Add(plate10);
-
-    // Duplicate weights
-    if (0)
+    try
     {
-        plates.Add(plate05);
-
-        plates.Add(plate125);
-
-        plates.Add(plate25);
-        plates.Add(plate25);
-
-        plates.Add(plate5);
-        plates.Add(plate5);
-        plates.Add(plate5);
-
-        plates.Add(plate10);
+        options.Parse(argc, argv);
+    }
+    catch (const std::exception& ex)
+    {
+        std::cout << ex.what();
+        return -1;
     }
 
-
-    CDumbbellHandle handle{ measure::CWeight::Create(2.0_kg), measure::CWidth::Create(10.0_cm) };
+    CDumbbellHandle handle{ options.HandleWeight(), options.HandleWidth() };
 
     EqualWeightStrategy splitter;
     BalancedWeightEvaluator configEvaluator;
 
     Calculator calc{ splitter, configEvaluator };
-    calc.Calculate(handle, plates);
+    calc.Calculate(handle, options.Plates());
 
-    std::cout << resultToCsv(calc.Result(), false, true);
+    std::cout << resultToCsv(calc.Result(), options.ExportFloatAsString(), options.LocalAwareFormat());
     return 0;
 }
