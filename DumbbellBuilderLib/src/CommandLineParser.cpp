@@ -1,4 +1,6 @@
 #include "CommandLineParser.h"
+#include "Conversion.h"
+
 #include <tclap\CmdLine.h>
 
 struct CPlateData
@@ -15,21 +17,21 @@ struct CPlateData
             float weight;
             if (!(iss >> weight))
                 throw TCLAP::ArgParseException(str + " is not a plates list");
-            Weight = measure::CWeight(unit::CKilogram{ weight });
+            Weight = measure::CWeight::Create(unit::CKilogram{ weight });
         }
 
         {
             float width;
             if (!(iss >> width))
                 throw TCLAP::ArgParseException(str + " is not a plates list");
-            Width = measure::CWidth(unit::CMillimeter{ width });
+            Width = measure::CWidth::Create(unit::CMillimeter{ width });
         }
 
         {
             float height;
             if (!(iss >> height))
                 throw TCLAP::ArgParseException(str + " is not a plates list");
-            Height = measure::CHeight(unit::CCentimeter{ height }.To<unit::CMillimeter>());
+            Height = measure::CHeight::Create(unit::CCentimeter{ height });
         }
 
         {
@@ -81,8 +83,8 @@ void CCommandLineParser::Parse(int argc, const char* const* argv)
 
     m_ExportFloatAsString = exportFloatAsStringArg.getValue();
     m_LocalAwareFormat = localAwareFormatArg.getValue();
-    m_HandleWeight = measure::CWeight{ unit::CKilogram { handleWeightArg.getValue() } };
-    m_HandleWidth = measure::CWidth{ unit::CMillimeter { handleWidthArg.getValue() } };
+    m_HandleWeight = measure::CWeight::Create(unit::CKilogram { handleWeightArg.getValue() });
+    m_HandleWidth = measure::CWidth::Create(unit::CMillimeter { handleWidthArg.getValue() });
     for (const auto& data : platesArg)
     {
         for (int i = 0; i < data.Count; i++)

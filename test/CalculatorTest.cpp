@@ -70,7 +70,7 @@ namespace test
             Assert::AreEqual<size_t>(9, GetCalculator().Result().size());
 
             auto expected = CDumbbellConfig{ CPlates{{plate0_5, plate2_5}}, CPlates{{plate2_5}} };
-            auto actual = GetCalculator().Result(measure::CWeight{ 7.5_kg });
+            auto actual = GetCalculator().Result(measure::CWeight::Create(7.5_kg));
             Assert::IsNotNull(actual);
             Assert::AreEqual(expected, *actual);
         }
@@ -97,7 +97,7 @@ namespace test
             CPlates left{ { plate1_25, plate2_5, plate5_0 } };
             CPlates right{ { plate0_5, plate2_5, plate5_0 } };
             CDumbbellConfig expected = CDumbbellConfig{ left, right };
-            auto actual = GetCalculator().Result(measure::CWeight{ 18.75_kg });
+            auto actual = GetCalculator().Result(measure::CWeight::Create(18.75_kg));
             Assert::IsNotNull(actual);
             Assert::AreEqual(expected, *actual);
         }
@@ -107,7 +107,7 @@ namespace test
 
         void Init()
         {
-            m_Handle = CDumbbellHandle{ TWeight{ 2.0_kg }, TWidth{ 10.0_cm } };
+            m_Handle = CDumbbellHandle{ TWeight::Create(2.0_kg), TWidth::Create(10.0_cm) };
             m_Calculator = std::make_unique<Calculator>(m_SplitStrategy, m_Evaluator);
         }
 
@@ -126,7 +126,7 @@ namespace test
 
         CPlate Plate(unit::CKilogram Weight)
         {
-            return CPlate{ TWeight{Weight}, TWidth(20.0_mm), THeight(10.0_cm) };
+            return CPlate{ TWeight::Create(Weight), TWidth::Create(20.0_mm), THeight::Create(10.0_cm) };
         }
 
         Calculator& GetCalculator() const
@@ -139,11 +139,11 @@ namespace test
         EqualWeightStrategy m_SplitStrategy;
         std::unique_ptr<Calculator> m_Calculator;
 
-        CPlate plate0_5 { TWeight(0.5_kg),  TWidth(10.0_mm), THeight(10.0_cm) };
-        CPlate plate1_25{ TWeight(1.25_kg), TWidth(18.0_mm), THeight(10.0_cm) };
-        CPlate plate2_5 { TWeight(2.5_kg),  TWidth(22.0_mm), THeight(10.0_cm) };
-        CPlate plate5_0 { TWeight(5.0_kg),  TWidth(30.0_mm), THeight(10.0_cm) };
-        CPlate plate10_0{ TWeight(10.0_kg), TWidth(30.0_mm), THeight(10.0_cm) };
+        CPlate plate0_5 { TWeight::Create(0.5_kg),  TWidth::Create(10.0_mm), THeight::Create(10.0_cm) };
+        CPlate plate1_25{ TWeight::Create(1.25_kg), TWidth::Create(18.0_mm), THeight::Create(10.0_cm) };
+        CPlate plate2_5 { TWeight::Create(2.5_kg),  TWidth::Create(22.0_mm), THeight::Create(10.0_cm) };
+        CPlate plate5_0 { TWeight::Create(5.0_kg),  TWidth::Create(30.0_mm), THeight::Create(10.0_cm) };
+        CPlate plate10_0{ TWeight::Create(10.0_kg), TWidth::Create(30.0_mm), THeight::Create(10.0_cm) };
 
 	};
 }

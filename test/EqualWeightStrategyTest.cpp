@@ -18,11 +18,11 @@ namespace test
     
     TEST_CLASS(EqualWeightStrategyTest)
 	{
-        measure::CWeight w0_5{ 0.5_kg };
-        measure::CWeight w1_25{ 1.25_kg };
-        measure::CWeight w2_5{ 2.5_kg };
-        measure::CWeight w5_0{ 5.0_kg };
-        measure::CWeight w10_0{ 10.0_kg };
+        measure::CWeight w0_5 { measure::CWeight::Create(0.5_kg) };
+        measure::CWeight w1_25{ measure::CWeight::Create(1.25_kg) };
+        measure::CWeight w2_5 { measure::CWeight::Create(2.5_kg) };
+        measure::CWeight w5_0 { measure::CWeight::Create(5.0_kg) };
+        measure::CWeight w10_0{ measure::CWeight::Create(10.0_kg) };
 
 	public:
         TEST_METHOD(FindMiddle_SimpleCase)
@@ -98,7 +98,7 @@ namespace test
 
         CPlate Plate(unit::CKilogram Weight)
         {
-            return CPlate{ measure::CWeight{Weight}, measure::CWidth(20.0_mm), measure::CHeight(10.0_cm) };
+            return CPlate{ measure::CWeight::Create(Weight), measure::CWidth::Create(20.0_mm), measure::CHeight::Create(10.0_cm) };
         }
 	};
 }

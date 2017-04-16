@@ -138,6 +138,7 @@
     <ClInclude Include="include\Calculator.h" />
     <ClInclude Include="include\CombinationsGenerator.h" />
     <ClInclude Include="include\CommandLineParser.h" />
+    <ClInclude Include="include\Conversion.h" />
     <ClInclude Include="include\Dumbbell.h" />
     <ClInclude Include="include\DumbbellConfigEvaluator.h" />
     <ClInclude Include="include\Measure.h" />

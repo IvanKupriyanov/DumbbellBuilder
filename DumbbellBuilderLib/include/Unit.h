@@ -171,20 +171,4 @@ T operator* (const CUnit<T>& Lhs, const float& Rhs)
     return T(Lhs.Value() * Rhs);
 }
 
-template <typename TOut, typename TIn>
-inline TOut Convert(const TIn& Value)
-{
-    // TODO: make converter methods
-    static_assert(false, "Should provide proper specialization");
-    return TOut();
-}
-
-template<>
-inline CMillimeter Convert(const CCentimeter& Value)
-{
-    return CMillimeter{ Value.Value() * 10.0f };
-}
-
-
-
-} // namespace metric
+} // namespace unit

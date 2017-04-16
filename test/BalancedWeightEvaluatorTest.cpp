@@ -111,7 +111,7 @@ namespace test
             {
                 CPlates left{ { plate10_0 } };
                 CPlates right{ { plate5_0 } };
-                Assert::AreEqual(TWeight{ 15.0_kg }, left.GetWeight() + right.GetWeight());
+                Assert::AreEqual(TWeight::Create(15.0_kg), left.GetWeight() + right.GetWeight());
 
                 CDumbbellConfig notBalanced { left, right };
                 Assert::IsTrue(m_Evaluator.Rank(m_Handle, notBalanced));
@@ -122,7 +122,7 @@ namespace test
             {
                 CPlates left{ { plate2_5, plate5_0 } };
                 CPlates right{ { plate2_5, plate5_0 } };
-                Assert::AreEqual(TWeight{ 15.0_kg }, left.GetWeight() + right.GetWeight());
+                Assert::AreEqual(TWeight::Create(15.0_kg), left.GetWeight() + right.GetWeight());
 
                 CDumbbellConfig sortedConfig { left, right };
                 bestConfig = sortedConfig;
@@ -133,7 +133,7 @@ namespace test
             {
                 CPlates left{ { plate2_5, plate5_0, plate5_0 } };
                 CPlates right{ { plate2_5 } };
-                Assert::AreEqual(TWeight{ 15.0_kg }, left.GetWeight() + right.GetWeight());
+                Assert::AreEqual(TWeight::Create(15.0_kg), left.GetWeight() + right.GetWeight());
 
                 CDumbbellConfig unbalanced { left, right };
                 Assert::IsFalse(m_Evaluator.Rank(m_Handle, unbalanced));
@@ -191,7 +191,6 @@ namespace test
         }
 
 
-
         // 17 kg.
         // 
         TEST_METHOD(TestBalanceFor18_75kg)
@@ -216,12 +215,11 @@ namespace test
         }
 
 
-
     private:
 
         void Init()
         {
-            m_Handle = CDumbbellHandle{ TWeight{ 2.0_kg }, TWidth{ 10.0_cm } };
+            m_Handle = CDumbbellHandle{ TWeight::Create(2.0_kg), TWidth::Create(10.0_cm) };
             m_Evaluator.Reset();
         }
 
@@ -240,17 +238,17 @@ namespace test
 
         CPlate Plate(unit::CKilogram Weight)
         {
-            return CPlate{ TWeight{Weight}, TWidth(20.0_mm), THeight(10.0_cm) };
+            return CPlate{ TWeight::Create(Weight), TWidth::Create(20.0_mm), THeight::Create(10.0_cm) };
         }
 
         CDumbbellHandle m_Handle;
         BalancedWeightEvaluator m_Evaluator;
 
-        CPlate plate0_5 { TWeight(0.5_kg),  TWidth(10.0_mm), THeight(10.0_cm) };
-        CPlate plate1_25{ TWeight(1.25_kg), TWidth(18.0_mm), THeight(10.0_cm) };
-        CPlate plate2_5 { TWeight(2.5_kg),  TWidth(22.0_mm), THeight(10.0_cm) };
-        CPlate plate5_0 { TWeight(5.0_kg),  TWidth(30.0_mm), THeight(10.0_cm) };
-        CPlate plate10_0{ TWeight(10.0_kg), TWidth(30.0_mm), THeight(10.0_cm) };
+        CPlate plate0_5 { TWeight::Create(0.5_kg),  TWidth::Create(10.0_mm), THeight::Create(10.0_cm) };
+        CPlate plate1_25{ TWeight::Create(1.25_kg), TWidth::Create(18.0_mm), THeight::Create(10.0_cm) };
+        CPlate plate2_5 { TWeight::Create(2.5_kg),  TWidth::Create(22.0_mm), THeight::Create(10.0_cm) };
+        CPlate plate5_0 { TWeight::Create(5.0_kg),  TWidth::Create(30.0_mm), THeight::Create(10.0_cm) };
+        CPlate plate10_0{ TWeight::Create(10.0_kg), TWidth::Create(30.0_mm), THeight::Create(10.0_cm) };
 
 	};
 }

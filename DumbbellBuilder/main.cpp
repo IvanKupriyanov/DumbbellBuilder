@@ -1,6 +1,7 @@
 #include "Calculator.h"
 #include "Measure.h"
 #include "Unit.h"
+#include "Conversion.h"
 #include "CommandLineParser.h"
 
 #include <iostream>
@@ -46,11 +47,11 @@ int main(int argc, char** argv)
     argc; argv;
 
 
-    CPlate plate05 { measure::CWeight(0.5_kg),  measure::CWidth(10.0_mm), measure::CHeight(10.0_mm) };
-    CPlate plate125{ measure::CWeight(1.25_kg), measure::CWidth(18.0_mm), measure::CHeight(10.0_mm) };
-    CPlate plate25 { measure::CWeight(2.5_kg),  measure::CWidth(22.0_mm), measure::CHeight(10.0_mm) };
-    CPlate plate5  { measure::CWeight(5.0_kg),  measure::CWidth(30.0_mm), measure::CHeight(10.0_mm) };
-    CPlate plate10 { measure::CWeight(10.0_kg), measure::CWidth(30.0_mm), measure::CHeight(10.0_mm) };
+    CPlate plate05 { measure::CWeight::Create(0.5_kg),  measure::CWidth::Create(10.0_mm), measure::CHeight::Create(10.0_mm) };
+    CPlate plate125{ measure::CWeight::Create(1.25_kg), measure::CWidth::Create(18.0_mm), measure::CHeight::Create(10.0_mm) };
+    CPlate plate25 { measure::CWeight::Create(2.5_kg),  measure::CWidth::Create(22.0_mm), measure::CHeight::Create(10.0_mm) };
+    CPlate plate5  { measure::CWeight::Create(5.0_kg),  measure::CWidth::Create(30.0_mm), measure::CHeight::Create(10.0_mm) };
+    CPlate plate10 { measure::CWeight::Create(10.0_kg), measure::CWidth::Create(30.0_mm), measure::CHeight::Create(10.0_mm) };
 
     CPlates plates;
     plates.Add(plate05);
@@ -84,7 +85,7 @@ int main(int argc, char** argv)
     }
 
 
-    CDumbbellHandle handle{ measure::CWeight{2.0_kg}, measure::CWidth{10.0_cm} };
+    CDumbbellHandle handle{ measure::CWeight::Create(2.0_kg), measure::CWidth::Create(10.0_cm) };
 
     EqualWeightStrategy splitter;
     BalancedWeightEvaluator configEvaluator;

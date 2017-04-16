@@ -64,6 +64,9 @@
     <ClInclude Include="include\CommandLineParser.h">
       <Filter>include\cli</Filter>
     </ClInclude>
+    <ClInclude Include="include\Conversion.h">
+      <Filter>include\units</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Dumbbell.cpp">
