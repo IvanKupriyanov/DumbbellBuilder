@@ -12,6 +12,7 @@ public:
     measure::CWeight HandleWeight() const;
     measure::CWidth HandleWidth() const;
     const CPlates& Plates() const;
+    std::string OutputFilePath() const;
 
 private:
     bool m_ExportFloatAsString;
@@ -19,5 +20,6 @@ private:
     measure::CWeight m_HandleWeight;
     measure::CWidth m_HandleWidth;
     CPlates m_Plates;
+    std::string m_OutputFilePath;
 
 };

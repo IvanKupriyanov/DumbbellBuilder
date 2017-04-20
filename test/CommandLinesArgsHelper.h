@@ -108,6 +108,14 @@ public:
         return *this;
     }
 
+    ArgsBuilder& OutputFilePath(const std::string& Path)
+    {
+        m_Args.push_back("--output");
+        m_Args.push_back(Path);
+
+        return *this;
+    }
+
     ArgsBuilder Plate(TWeight Weight, TWidth Width, THeight Height, int Count)
     {
         m_Args.push_back("--plate");

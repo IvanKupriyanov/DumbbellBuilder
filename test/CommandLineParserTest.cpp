@@ -30,6 +30,7 @@ namespace test
                  .HandleWidth(TWidth::Create(20.0_cm))
                  .ExportFloatAsString(true)
                  .LocalAwareFormat(true)
+                 .OutputFilePath("A:\\result.csv")
                  .Plate(plate0_5, 1)
                  .Plate(plate1_25, 1)
                  .Plate(plate2_5, 2)
@@ -56,6 +57,7 @@ namespace test
             Assert::AreEqual(TWidth::Create(20.0_cm), parser.HandleWidth());
             Assert::IsTrue(parser.ExportFloatAsString());
             Assert::IsTrue(parser.LocalAwareFormat());
+            Assert::AreEqual(std::string("A:\\result.csv"), parser.OutputFilePath());
         }
     };
 }

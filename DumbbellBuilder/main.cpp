@@ -4,6 +4,7 @@
 
 #include <iostream>
 #include <sstream>
+#include <fstream>
 
 std::ostream& platesToCsv(std::ostream& strm, const std::vector<CPlate>& Plates, bool ExportFloatAsString)
 {
@@ -41,8 +42,6 @@ std::string resultToCsv(const std::map<measure::CWeight, CDumbbellConfig>& resul
 
 int main(int argc, char** argv)
 {
-    using namespace unit::literals;
-    argc; argv;
     CCommandLineParser options;
 
     try
@@ -55,6 +54,13 @@ int main(int argc, char** argv)
         return -1;
     }
 
+    std::ofstream output{ options.OutputFilePath().c_str() };
+    if (!output)
+    {
+        std::cout << "Error while opeping output file: " << options.OutputFilePath();
+        return -1;
+    }
+
     CDumbbellHandle handle{ options.HandleWeight(), options.HandleWidth() };
 
     EqualWeightStrategy splitter;
@@ -63,6 +69,6 @@ int main(int argc, char** argv)
     Calculator calc{ splitter, configEvaluator };
     calc.Calculate(handle, options.Plates());
 
-    std::cout << resultToCsv(calc.Result(), options.ExportFloatAsString(), options.LocalAwareFormat());
+    output << resultToCsv(calc.Result(), options.ExportFloatAsString(), options.LocalAwareFormat());
     return 0;
 }

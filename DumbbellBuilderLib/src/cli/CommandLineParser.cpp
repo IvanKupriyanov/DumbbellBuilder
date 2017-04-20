@@ -75,6 +75,10 @@ void CCommandLineParser::Parse(int argc, const char* const* argv)
         "w", "handle_plates_area_width", "Width of plates area on dumbbell handle.",
         true, 0.0, "mm", cmd };
 
+    TCLAP::ValueArg<std::string> outputFilePathArg{
+        "o", "output", "Output file path.",
+        true, "", "string", cmd };
+
     TCLAP::MultiArg<CPlateData> platesArg{
         "p", "plate", "Plate description: weight(kg), width(mm), height(mm), available plates count",
         true, "float(weight_kg) float(width_mm) float(height_mm) int(count)", cmd };
@@ -85,6 +89,7 @@ void CCommandLineParser::Parse(int argc, const char* const* argv)
     m_LocalAwareFormat = localAwareFormatArg.getValue();
     m_HandleWeight = measure::CWeight::Create(unit::CKilogram { handleWeightArg.getValue() });
     m_HandleWidth = measure::CWidth::Create(unit::CMillimeter { handleWidthArg.getValue() });
+    m_OutputFilePath = outputFilePathArg.getValue();
     for (const auto& data : platesArg)
     {
         for (int i = 0; i < data.Count; i++)
@@ -116,4 +121,9 @@ measure::CWidth CCommandLineParser::HandleWidth() const
 const CPlates& CCommandLineParser::Plates() const
 {
     return m_Plates;
+}
+
+std::string CCommandLineParser::OutputFilePath() const
+{
+    return m_OutputFilePath;
 }
